@@ -1,6 +1,6 @@
 
 from database import Session
-from models import User
+from Models import User
 
 def create_user(name, email):
     session = Session()

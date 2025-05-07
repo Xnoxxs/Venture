@@ -1,9 +1,7 @@
 
-from sqlalchemy import Column, Integer, String, Text, Boolean, TIMESTAMP, ARRAY
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, Text, Boolean, TIMESTAMP, ARRAY
 import datetime
-
-Base = declarative_base()
+from Models.base.base import Base
 
 class User(Base):
     __tablename__ = 'users'
@@ -12,8 +10,8 @@ class User(Base):
     name = Column(Text, nullable=False)
     email = Column(Text, unique=True, nullable=False)
     password = Column(Text, nullable=False)
+    created = Column(TIMESTAMP, default=datetime.datetime.now)
 
-    created = Column(TIMESTAMP, default=datetime.datetime.utcnow)
     customer_id = Column(Text)
     customer_created = Column(TIMESTAMP)
     payment_method_default = Column(Text)

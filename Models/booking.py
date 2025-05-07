@@ -1,8 +1,5 @@
 from sqlalchemy import Column, Integer, Text, Boolean, TIMESTAMP, Numeric, ForeignKey, JSON
-from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()
-
+from Models.base.base import Base
 
 class Booking(Base):
     __tablename__ = 'bookings'
@@ -13,10 +10,10 @@ class Booking(Base):
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
 
     people = Column(Integer)
-    extras = Column(Integer)
+    extras = Column(JSON)
 
-    promotion = Column(Text)
-    promotion_id = Column(Text)
+    promotion = Column(Boolean)
+    promotion_id = Column(Text, nullable=True)
 
     status = Column(Text)
     booking_type = Column(Text)
@@ -28,10 +25,11 @@ class Booking(Base):
     activity_price = Column(Numeric)
     total_price = Column(Numeric)
 
-    payment_intent_id = Column(Text)
-
     asked_for_rating = Column(Boolean, default=False)
     is_rated = Column(Boolean, default=False)
 
     cancellation_policies = Column(JSON)  # List of { hours, refund_percentage }
     refund = Column(JSON)  # Object with refund fields
+
+    payment_intent_id = Column(Text)
+

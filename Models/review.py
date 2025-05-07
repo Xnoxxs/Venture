@@ -1,9 +1,7 @@
 
 from sqlalchemy import Column, Integer, Text, TIMESTAMP, ForeignKey, CheckConstraint
-from sqlalchemy.ext.declarative import declarative_base
 import datetime
-
-Base = declarative_base()
+from Models.base.base import Base
 
 class Review(Base):
     __tablename__ = 'reviews'
@@ -15,7 +13,7 @@ class Review(Base):
 
     score = Column(Integer, nullable=False)
     comment = Column(Text)
-    date = Column(TIMESTAMP, default=datetime.datetime.utcnow)
+    date = Column(TIMESTAMP, default=datetime.datetime.now)
 
     __table_args__ = (
         CheckConstraint('score BETWEEN 0 AND 5', name='score_range_check'),
