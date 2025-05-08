@@ -5,6 +5,7 @@ from Models.review import Review
 
 def leave_review(booking_id, user_id, score, comment):
     session = Session()
+
     # Check if a review already exists for this booking and user
     existing = session.query(Review).filter_by(booking_id=booking_id, user_id=user_id).first()
     if not existing:
@@ -22,6 +23,19 @@ def leave_review(booking_id, user_id, score, comment):
     session.close()
 
 def isolation_test():
+
+    """
+    A booking can only have one review, so this test makes sure that this rule is applied
+    by making 10 reviews for the same booking at the same time using thread and at the end only
+    one review should be made
+    """
+
+    # Clean the reviews table before testing
+    session = Session()
+    session.query(Review).delete()
+    session.commit()
+    session.close()
+
     booking_id = 1  # Use a real booking ID
     user_id = 1     # Use a real user ID
 
@@ -42,25 +56,3 @@ def isolation_test():
 
 if __name__ == "__main__":
     isolation_test()
-
-
-
-
-
-
-
-
-
-
-
-
-"""
-Ran 10 threads, each trying to create a review for the same booking and user at the same time.
-After all threads finished, the  test checked how many reviews were created for that booking and user.
-Result:
-Number of reviews for booking 1 by user 1: 1
-This means only one review was created, even under concurrent access.
-This proves system/database correctly enforces isolation for this operation.
-There are no anomalies (like duplicate reviews) even when many threads try to create a review at the same time.
-Your business rule ("one review per user per booking") is safe from race conditions
-"""

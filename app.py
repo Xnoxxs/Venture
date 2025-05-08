@@ -28,8 +28,8 @@ def set_search_path(dbapi_connection, connection_record):
 if __name__ == "__main__":
     #create_tables()
     #seed_all()
-    #isolation_test()
-    performance_test_create_users()
+    isolation_test()
+    #performance_test_create_users()
 
 
 
