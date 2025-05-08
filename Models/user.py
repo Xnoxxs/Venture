@@ -5,6 +5,7 @@ from Models.base.base import Base
 
 class User(Base):
     __tablename__ = 'users'
+    __table_args__ = {'schema': 'Venture'}
 
     id = Column(Integer, primary_key=True)
     name = Column(Text, nullable=False)

@@ -10,9 +10,12 @@ def create_user(name, email, password="password123"):
     session.commit()
     session.close()
     
-def test_create_users():
+def performance_test_create_users():
     start = time.time()
     for i in range(1000):
         create_user(f"User{i}", f"user{i}@example.com", "password123")
     print("Finished in", time.time() - start, "seconds")
-    # Finished in 49.061002016067505 seconds
+    # 88.90789699554443 seconds
+
+if __name__ == "__main__":
+    performance_test_create_users()

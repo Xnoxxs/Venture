@@ -5,9 +5,10 @@ from Models.base.base import Base
 
 class Transaction(Base):
     __tablename__ = 'transactions'
+    __table_args__ = {'schema': 'Venture'}
 
     id = Column(Integer, primary_key=True)
-    booking_id = Column(Integer, ForeignKey('bookings.id'), nullable=False)
+    booking_id = Column(Integer, ForeignKey('Venture.bookings.id'), nullable=False)
     transaction_date = Column(TIMESTAMP, default=datetime.datetime.now)  # Timestamp of the transaction
     release_date = Column(TIMESTAMP)  # Scheduled release date
     commission_percentage = Column(Numeric(5, 2))  # Commission percentage

@@ -43,6 +43,17 @@ def isolation_test():
 if __name__ == "__main__":
     isolation_test()
 
+
+
+
+
+
+
+
+
+
+
+
 """
 Ran 10 threads, each trying to create a review for the same booking and user at the same time.
 After all threads finished, the  test checked how many reviews were created for that booking and user.

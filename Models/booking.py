@@ -3,11 +3,12 @@ from Models.base.base import Base
 
 class Booking(Base):
     __tablename__ = 'bookings'
+    __table_args__ = {'schema': 'Venture'}
 
     id = Column(Integer, primary_key=True)
 
-    activity_id = Column(Integer, ForeignKey('activities.id'), nullable=False)
-    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    activity_id = Column(Integer, ForeignKey('Venture.activities.id'), nullable=False)
+    user_id = Column(Integer, ForeignKey('Venture.users.id'), nullable=False)
 
     people = Column(Integer)
     extras = Column(JSON)

@@ -4,6 +4,7 @@ from Models.base.base import Base
 
 class ActivityType(Base):
     __tablename__ = 'activity_types'
+    __table_args__ = {'schema': 'Venture'}
 
     id = Column(Integer, primary_key=True)
     name = Column(Text, unique=True, nullable=False)

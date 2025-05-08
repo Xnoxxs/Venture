@@ -4,9 +4,10 @@ from Models.base.base import Base
 
 class Activity(Base):
     __tablename__ = 'activities'
+    __table_args__ = {'schema': 'Venture'}
 
     id = Column(Integer, primary_key=True)
-    owner_id = Column(Integer, ForeignKey('owners.id'), nullable=False)
+    owner_id = Column(Integer, ForeignKey('Venture.owners.id'), nullable=False)
 
     name = Column(Text, nullable=False)
     description = Column(Text)

@@ -5,9 +5,10 @@ from Models.base.base import Base
 
 class Owner(Base):
     __tablename__ = 'owners'
+    __table_args__ = {'schema': 'Venture'}
 
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    user_id = Column(Integer, ForeignKey('Venture.users.id'), nullable=False)
     name = Column(Text, nullable=False)
     created = Column(TIMESTAMP, default=datetime.datetime.now)
     photo = Column(Text)
